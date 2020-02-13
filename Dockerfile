@@ -17,7 +17,7 @@ RUN \
         libgcc libc-dev g++ \
         make gcc groff less git openssh \
         musl-dev libffi-dev openssl-dev \
-        python3-dev py-pip && \
+        python-dev python3-dev py-pip && \
     pip install awscli docker-compose && \
     apk --purge -v del py-pip && \
     rm /var/cache/apk/*
