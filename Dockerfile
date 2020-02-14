@@ -12,16 +12,21 @@ ENV PYTHONUNBUFFERED $PYTHONUNBUFFERED
 RUN apk update
 
 # Install aws cli
-RUN \
-    apk -Uuv add \
-        libgcc libc-dev g++ \
-        make gcc groff less git openssh \
-        musl-dev libffi-dev openssl-dev \
-        python-dev python3 python3-dev py3-setuptools py-pip && \
-    pip install awscli docker-compose && \
-    apk --purge -v del py-pip && \
+RUN apk -Uuv add \
+    libgcc libc-dev g++ \
+    make gcc groff less git openssh musl-dev \
+    libffi-dev openssl-dev py-pip python-dev
+
+# Install AWS CLI
+RUN pip install awscli docker-compose && \
     rm /var/cache/apk/*
 
+# Install Python
+RUN apk add --no-cache python3 python3-dev py3-setuptools
+
+# Install Virtualenv
+RUN pip3 install virtualenv
+
 # Show Python version
-RUN python3 --version && \
+RUN python --version && \
     pip3 --version
