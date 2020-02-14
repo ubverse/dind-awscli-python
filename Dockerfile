@@ -23,7 +23,5 @@ RUN \
     rm /var/cache/apk/*
 
 # Show Python version
-RUN \
-    rm /var/cache/apk/* && \
-    python --version && \
+RUN python --version && \
     pip --version
