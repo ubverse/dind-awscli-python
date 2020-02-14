@@ -17,11 +17,11 @@ RUN \
         libgcc libc-dev g++ \
         make gcc groff less git openssh \
         musl-dev libffi-dev openssl-dev \
-        python-dev python3-dev py-pip && \
+        python-dev python3 python3-dev py3-setuptools py-pip && \
     pip install awscli docker-compose && \
     apk --purge -v del py-pip && \
     rm /var/cache/apk/*
 
 # Show Python version
-RUN python --version && \
-    pip --version
+RUN python3 --version && \
+    pip3 --version
