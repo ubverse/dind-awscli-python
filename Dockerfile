@@ -12,7 +12,7 @@ ENV PYTHONUNBUFFERED $PYTHONUNBUFFERED
 RUN apk update
 
 # Install aws cli
-RUN apk -Uuv add \
+RUN apk -Uuv add --no-cache \
     libgcc libc-dev g++ \
     make gcc groff less git openssh musl-dev \
     libffi-dev openssl-dev py-pip python-dev
