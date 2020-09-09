@@ -25,4 +25,4 @@ RUN \
 
 # Install gettext to overwrite a
 # file with environment variables
-RUN apk add --no-cache gettext
+RUN apk add --no-cache iptables gettext
