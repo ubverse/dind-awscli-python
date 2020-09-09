@@ -1,4 +1,4 @@
-FROM docker:latest
+FROM python:3.8-slim-buster
 
 # Host Environment
 ARG ENV
@@ -8,25 +8,21 @@ ENV ENV=$ENV
 ARG PYTHONUNBUFFERED
 ENV PYTHONUNBUFFERED $PYTHONUNBUFFERED
 
-# Update repositories
-RUN apk update
+# Update repositories and install dependencies
+RUN apt-get update -yy \
+    && apt-get upgrade -yy \
+    && apt-get install -yy libpq-dev gcc
 
-# Install aws cli
-RUN apk -Uuv add --no-cache \
-    libgcc libc-dev g++ \
-    make gcc groff less git openssh musl-dev \
-    libffi-dev openssl-dev py-pip python-dev
+# Install Pipenv (Python Package Manager)
+RUN pip install --no-cache-dir pipenv
 
-# Install AWS CLI
-RUN pip install awscli docker-compose && \
-    rm /var/cache/apk/*
-
-# Install Python
-RUN apk add --no-cache python3 python3-dev py3-setuptools
+# Install AWS cli
+RUN pip install --no-cache-dir awscli 
 
 # Install Virtualenv
-RUN pip3 install virtualenv
+RUN pip install virtualenv
 
-# Show Python version
+# Show Python and package managers versions
 RUN python --version && \
-    pip3 --version
+    pip --version && \
+    pipenv --version
