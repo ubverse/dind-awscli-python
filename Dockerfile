@@ -1,28 +1,25 @@
-FROM python:3.8-slim-buster
+FROM docker:latest
 
 # Host Environment
 ARG ENV
 ENV ENV=$ENV
 
-# Python Environment
-ARG PYTHONUNBUFFERED
-ENV PYTHONUNBUFFERED $PYTHONUNBUFFERED
+# NodeJS Environment
+ARG NODE_ENV
+ENV NODE_ENV=$NODE_ENV
 
-# Update repositories and install dependencies
-RUN apt-get update -yy \
-    && apt-get upgrade -yy \
-    && apt-get install -yy libpq-dev gcc
+# Update repositories
+RUN apk update
 
-# Install Pipenv (Python Package Manager)
-RUN pip install --no-cache-dir pipenv
+# Install aws cli
+RUN \
+    apk -Uuv add --no-cache make gcc groff less git openssh \
+        musl-dev libffi-dev openssl-dev \
+        python2-dev py-pip && \
+    pip install awscli docker-compose && \
+    apk --purge -v del py-pip && \
+    rm /var/cache/apk/*
 
-# Install AWS cli
-RUN pip install --no-cache-dir awscli 
-
-# Install Virtualenv
-RUN pip install virtualenv
-
-# Show Python and package managers versions
-RUN python --version && \
-    pip --version && \
-    pipenv --version
+# Install gettext to overwrite a
+# file with environment variables
+RUN apk add --no-cache gettext
