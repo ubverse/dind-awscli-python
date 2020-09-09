@@ -12,17 +12,13 @@ ENV NODE_ENV=$NODE_ENV
 RUN apk update
 
 # Install python
-RUN apk add --no-cache python3-dev python2-dev
+RUN apk add --no-cache python2-dev gettext
 
 # Install aws cli
 RUN \
     apk -Uuv add --no-cache make gcc groff less git openssh \
         musl-dev libffi-dev openssl-dev \
-        python2-dev py-pip && \
-    pip install awscli docker-compose && \
+        py-pip && \
+    pip install awscli && \
     apk --purge -v del py-pip && \
     rm /var/cache/apk/*
-
-# Install gettext to overwrite a
-# file with environment variables
-RUN apk add --no-cache gettext
