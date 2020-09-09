@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM docker:19.03.12-dind
 
 # Host Environment
 ARG ENV
@@ -26,6 +26,3 @@ RUN \
 # Install gettext to overwrite a
 # file with environment variables
 RUN apk add --no-cache gettext
-
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["sh"]
