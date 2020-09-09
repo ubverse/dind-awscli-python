@@ -11,6 +11,9 @@ ENV NODE_ENV=$NODE_ENV
 # Update repositories
 RUN apk update
 
+# Install python
+RUN apk add --no-cache python3-dev python2-dev
+
 # Install aws cli
 RUN \
     apk -Uuv add --no-cache make gcc groff less git openssh \
