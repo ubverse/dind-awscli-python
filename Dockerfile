@@ -10,7 +10,7 @@ ENV NODE_ENV=$NODE_ENV
 
 # Install aws cli
 RUN \
-    apk -Uuv add --no-cache openssh \
+    apk -Uuv add --no-cache gcc openssh \
         musl-dev libffi-dev openssl-dev \
         python2-dev py-pip && \
     pip install awscli docker-compose && \
