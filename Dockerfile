@@ -12,6 +12,8 @@ ENV NODE_ENV=$NODE_ENV
 RUN \
     apk -Uuv add --no-cache gcc make groff openssh \
         musl-dev libffi-dev openssl-dev \
-        python2-dev py-pip && \
-    pip install awscli docker-compose && \
-    apk --purge -v del py-pip
+        python2-dev py-pip
+        
+RUN pip install six awscli && \
+    python --version && \
+    pip --version
