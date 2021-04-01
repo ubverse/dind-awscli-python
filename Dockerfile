@@ -12,7 +12,7 @@ ENV NODE_ENV=$NODE_ENV
 RUN \
     apk -Uuv add --no-cache gcc make groff openssh \
         musl-dev libffi-dev openssl-dev \
-        python3-dev
+        python3-dev py3-pip
         
 RUN pip install six awscli && \
     python --version && \
