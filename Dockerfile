@@ -1,4 +1,4 @@
-FROM docker:19.03.12-dind
+FROM docker:20.10.5-dind
 
 # Host Environment
 ARG ENV
