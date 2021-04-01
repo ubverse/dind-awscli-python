@@ -1,12 +1,4 @@
-FROM docker:20.10.5-dind
-
-# Host Environment
-ARG ENV
-ENV ENV=$ENV
-
-# NodeJS Environment
-ARG NODE_ENV
-ENV NODE_ENV=$NODE_ENV
+FROM docker:20.10.5-dind  AS build
 
 # Install aws cli
 RUN \
@@ -14,6 +6,12 @@ RUN \
         musl-dev libffi-dev openssl-dev \
         python3-dev py3-pip
         
-RUN pip install six awscli && \
-    python --version && \
-    pip --version
+RUN python3 --version && \
+    pip3 --version
+
+RUN pip3 install awscli aws-sam-cli --upgrade
+
+FROM build
+# Host Environment
+ARG ENV
+ENV ENV=$ENV
