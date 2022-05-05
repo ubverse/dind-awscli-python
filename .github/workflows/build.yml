@@ -9,6 +9,7 @@ on:
     branches: '*'
     tags: '*'
     paths-ignore: '**.md'
+  workflow_dispatch:
 
 env:
   DIMG: dind-awscli-python
