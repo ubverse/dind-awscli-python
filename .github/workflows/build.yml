@@ -2,31 +2,32 @@ name: build
 
 on:
   push:
-    branches:
-      - "*"
-    tags:
-      - "*"
-    paths-ignore:
-      - "**.md"
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.md'
   pull_request:
-    branches:
-      - "*"
-    tags:
-      - "*"
-    paths-ignore:
-      - "**.md"
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.md'
+
+env:
+  DIMG: dind-awscli-python
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build image
-        run: docker build -t dind-awscli-python .
+        run: docker build -t $DIMG .
 
-      - name: Run test
+      - name: Binary test
         run: |
-          docker run --rm dind-awscli-python docker --version
-          docker run --rm dind-awscli-python docker-compose --version
+          docker run --rm $DIMG python3 --version
+          docker run --rm $DIMG pip3 --version
+          docker run --rm $DIMG aws --version
+          docker run --rm $DIMG sam --version
+          docker run --rm $DIMG docker --version
+          docker run --rm $DIMG docker-compose --version
