@@ -20,7 +20,7 @@ RUN apk -Uuv add --no-cache \
 FROM system-requirements AS pip-requirements
 WORKDIR /
 COPY pip/requirements.txt .
-RUN pip install --no-deps -r requirements.txt \
+RUN pip install --no-cache-dir --no-deps -r requirements.txt \
     && rm requirements.txt
 
 
