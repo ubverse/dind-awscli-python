@@ -26,9 +26,9 @@ jobs:
 
       - name: Binary test
         run: |
-          docker run --rm $DIMG python3 --version
-          docker run --rm $DIMG pip3 --version
-          docker run --rm $DIMG aws --version
-          docker run --rm $DIMG sam --version
           docker run --rm $DIMG docker --version
-          docker run --rm $DIMG docker-compose --version
+          docker run --rm $DIMG /usr/bin/python3 --version
+          docker run --rm $DIMG /usr/bin/pip3 --version
+          docker run --rm $DIMG /usr/bin/aws --version
+          docker run --rm $DIMG /usr/bin/sam --version
+          docker run --rm $DIMG /usr/bin/docker-compose --version
