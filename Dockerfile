@@ -18,10 +18,10 @@ RUN apk -Uuv add --no-cache \
 
 # aws cli tools and docker-compose (rust and cargo is required to build docker-compose)
 FROM system-requirements AS pip-requirements
-RUN pip3 install --no-cache-dir --upgrade \
-    "awscli==1.23.8" \
-    "aws-sam-cli==1.48.0" \
-    "docker-compose==1.29.2"
+WORKDIR /
+COPY pip/requirements.txt .
+RUN pip install --no-deps -r requirements.txt \
+    && rm requirements.txt
 
 
 # check whether the relevant binaries are accessible on $PATH
