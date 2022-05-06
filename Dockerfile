@@ -1,6 +1,6 @@
 # C compiler/development headers, python, pip and other build dependencies
 # rust and cargo is required by docker-compose
-FROM docker:20.10.14-dind-alpine3.15 AS system-requirements
+FROM docker:20.10.15-dind-alpine3.15 AS system-requirements
 RUN apk -Uuv add --no-cache \
     "gcc=10.3.1_git20211027-r0" \
     "make=4.3-r0" \
