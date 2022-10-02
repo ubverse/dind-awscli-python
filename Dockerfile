@@ -1,19 +1,19 @@
 # C compiler/development headers, python, pip and other build dependencies
 # rust and cargo is required by docker-compose
-FROM docker:20.10.14-dind-alpine3.15 AS system-requirements
+FROM docker:20.10.18-dind-alpine3.16 AS system-requirements
 RUN apk -Uuv add --no-cache \
-    "gcc=10.3.1_git20211027-r0" \
+    "gcc=11.2.1_git20220219-r2" \
     "make=4.3-r0" \
     "groff=1.22.4-r1" \
-    "openssh=8.8_p1-r1" \
+    "openssh=9.0_p1-r2" \
     "libc-dev=0.7.2-r3" \
-    "musl-dev=1.2.2-r7" \
+    "musl-dev=1.2.3-r0" \
     "libffi-dev=3.4.2-r1" \
-    "openssl-dev=1.1.1n-r0" \
-    "python3-dev=3.9.7-r4" \
-    "py3-pip=20.3.4-r1" \
-    "rust=1.56.1-r0" \
-    "cargo=1.56.1-r0"
+    "openssl-dev=1.1.1q-r0" \
+    "python3-dev=3.10.5-r0" \
+    "py3-pip=22.1.1-r0" \
+    "rust=1.60.0-r2" \
+    "cargo=1.60.0-r2"
 
 
 # aws cli tools and docker-compose (rust and cargo is required to build docker-compose)
@@ -29,7 +29,6 @@ FROM pip-requirements AS binary-test
 RUN python3 --version \
     && pip3 --version \
     && aws --version \
-    && sam --version \
     && docker --version \
     && docker-compose --version
 
