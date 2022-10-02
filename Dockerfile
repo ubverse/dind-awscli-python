@@ -11,6 +11,8 @@ RUN apk -Uuv add --no-cache \
     "libffi-dev=3.4.2-r1" \
     "openssl-dev=1.1.1q-r0" \
     "python3-dev=3.10.5-r0" \
+    "docker-compose=1.29.2-r2" \
+    "poetry=1.1.13-r2" \
     "py3-pip=22.1.1-r0" \
     "rust=1.60.0-r2" \
     "cargo=1.60.0-r2"
